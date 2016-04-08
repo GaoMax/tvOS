@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F59F8261CB6B51D00DA8008 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F59F8251CB6B51D00DA8008 /* SecondViewController.swift */; };
 		4F6C11991CB421670096F090 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C11981CB421670096F090 /* AppDelegate.swift */; };
 		4F6C119B1CB421670096F090 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C119A1CB421670096F090 /* FirstViewController.swift */; };
-		4F6C119D1CB421670096F090 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C119C1CB421670096F090 /* SecondViewController.swift */; };
 		4F6C11A01CB421670096F090 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6C119E1CB421670096F090 /* Main.storyboard */; };
 		4F6C11A21CB421670096F090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F6C11A11CB421670096F090 /* Assets.xcassets */; };
 		4F6C11AD1CB421670096F090 /* tvOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C11AC1CB421670096F090 /* tvOSTests.swift */; };
@@ -19,6 +19,7 @@
 		4F6C11D01CB431160096F090 /* EpisodesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C11CF1CB431160096F090 /* EpisodesCollectionViewCell.swift */; };
 		4F6C11D21CB4311A0096F090 /* SeasonsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C11D11CB4311A0096F090 /* SeasonsCollectionViewCell.swift */; };
 		4FDD2F5A1CB437DF007EA085 /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD2F591CB437DF007EA085 /* SwiftSpinner.swift */; };
+		4FDD2F5C1CB53A03007EA085 /* CellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD2F5B1CB53A03007EA085 /* CellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F59F8251CB6B51D00DA8008 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		4F6C11951CB421670096F090 /* tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6C11981CB421670096F090 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F6C119A1CB421670096F090 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		4F6C119C1CB421670096F090 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		4F6C119F1CB421670096F090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F6C11A11CB421670096F090 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F6C11A31CB421670096F090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		4F6C11CF1CB431160096F090 /* EpisodesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesCollectionViewCell.swift; sourceTree = "<group>"; };
 		4F6C11D11CB4311A0096F090 /* SeasonsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonsCollectionViewCell.swift; sourceTree = "<group>"; };
 		4FDD2F591CB437DF007EA085 /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
+		4FDD2F5B1CB53A03007EA085 /* CellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,16 +110,17 @@
 			isa = PBXGroup;
 			children = (
 				4F6C11981CB421670096F090 /* AppDelegate.swift */,
-				4F6C119C1CB421670096F090 /* SecondViewController.swift */,
+				4F6C119A1CB421670096F090 /* FirstViewController.swift */,
+				4F59F8251CB6B51D00DA8008 /* SecondViewController.swift */,
 				4F6C119E1CB421670096F090 /* Main.storyboard */,
 				4F6C11C71CB427A70096F090 /* SeriesCollectionViewCell.swift */,
 				4F6C11A11CB421670096F090 /* Assets.xcassets */,
 				4F6C11CD1CB4310E0096F090 /* InhaltViewController.swift */,
-				4F6C119A1CB421670096F090 /* FirstViewController.swift */,
 				4F6C11D11CB4311A0096F090 /* SeasonsCollectionViewCell.swift */,
 				4F6C11CF1CB431160096F090 /* EpisodesCollectionViewCell.swift */,
 				4FDD2F591CB437DF007EA085 /* SwiftSpinner.swift */,
 				4F6C11A31CB421670096F090 /* Info.plist */,
+				4FDD2F5B1CB53A03007EA085 /* CellController.swift */,
 			);
 			path = tvOS;
 			sourceTree = "<group>";
@@ -271,9 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F6C119D1CB421670096F090 /* SecondViewController.swift in Sources */,
+				4FDD2F5C1CB53A03007EA085 /* CellController.swift in Sources */,
 				4FDD2F5A1CB437DF007EA085 /* SwiftSpinner.swift in Sources */,
 				4F6C11CE1CB4310E0096F090 /* InhaltViewController.swift in Sources */,
+				4F59F8261CB6B51D00DA8008 /* SecondViewController.swift in Sources */,
 				4F6C11D21CB4311A0096F090 /* SeasonsCollectionViewCell.swift in Sources */,
 				4F6C11D01CB431160096F090 /* EpisodesCollectionViewCell.swift in Sources */,
 				4F6C11991CB421670096F090 /* AppDelegate.swift in Sources */,

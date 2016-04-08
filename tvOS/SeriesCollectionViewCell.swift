@@ -24,60 +24,66 @@ class SeriesCollectionViewCell: UICollectionViewCell {
     func initLabel() {
         
         label.text = serie.componentsSeparatedByString("-").joinWithSeparator(" ")
-        backupImage()
-
         
-    }
-    
-    
-    
-    func backupImage() {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-        do {
-            let url = NSURL(string: "https://bs.to/serie/" + self.serie)
-            let contents = try NSString(contentsOfURL: url!, usedEncoding: nil)
-            
-            //print(contents)
-            let array = contents.componentsSeparatedByString("\n")
-            var image = String()
-            
-            for s : String in array {
-                
-                if(s.containsString("Cover")) {
-                    
-                    image = (s.componentsSeparatedByString("//")[1].componentsSeparatedByString("\"")[0])
-                    
-                }
-                
-                
-                
-            }
-                
-                if let url = NSURL(string: "https://" + image) {
-                    if let data = NSData(contentsOfURL: url) {
-                        let endimg = UIImage(data: data)
-                        
-                        self.image.image = endimg
-                    }//make sure your image in this url does exist, otherwise unwrap in a if let check
-                    
-                }
-                
+        let imagePath = fileInDocumentsDirectory(serie + ".png")
 
-
-            
-            self.tvdbid = "no"
-            
-        } catch {
-            print("Error loading Image"
-            )
+        if let loadedImage = loadImageFromPath(imagePath) {
+            image.image = loadedImage
+        } else {
+            image.image = UIImage()
         }
-            
-        };
-
+        
+        
     }
+       }
 
     
+    func loadImageFromPath(path: String) -> UIImage? {
+        
+        let image = UIImage(contentsOfFile: path)
+        
+        return image
+        
+    }
+    
+    func saveImage (image: UIImage, path: String ) -> Bool{
+        
+        let pngImageData = UIImagePNGRepresentation(image)
+        //let jpgImageData = UIImageJPEGRepresentation(image, 1.0)   // if you want to save as JPEG
+        let result = pngImageData!.writeToFile(path, atomically: true)
+        
+        return result
+        
+    }
+    
+    func getDocumentsURL() -> NSURL {
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        return documentsURL
+    }
+    
+    func fileInDocumentsDirectory(filename: String) -> String {
+        
+        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+        return fileURL.path!
+        
+    }
+    
+
+    
+
+
+public extension UIImage {
+    convenience init(color: UIColor, size: CGSize = CGSizeMake(1, 1)) {
+        let rect = CGRectMake(0, 0, size.width, size.height)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(CGImage: image.CGImage!)
+    }  
 }
+
 
 

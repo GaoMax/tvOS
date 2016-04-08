@@ -37,15 +37,28 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        loadSeasons()
-        
-        if(!tvdbid.containsString("no")) {
-            downloadBackground()
+        if(!episode) {
+            loadSeasons()
+        } else {
+            loadEpisodes()
         }
+    
+        setBackground()
 
 
 
     }
+    
+    func setBackground() {
+        let imagePath = self.fileInDocumentsDirectory(serie + "_background" + ".png")
+        
+        if let image = loadImageFromPath(imagePath) {
+            let color = UIColor(patternImage: image)
+            self.view.backgroundColor = color
+        }
+    }
+    
+    
     
     func loadEpisodes() {
         
@@ -171,7 +184,12 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
                 cell.seasonLabel.layer.masksToBounds = true
                 cell.seasonLabel.layer.cornerRadius = 8.0
                 cell.seasonLabel.font = cell.seasonLabel.font.fontWithSize(20)
-                cell.seasonLabel.frame = originalCellSize
+                
+                if(indexPath.row != 0) {
+                    UIView.animateWithDuration(0.4, animations: { () -> Void in
+                        cell.seasonLabel.frame = self.originalCellSize
+                    })
+                }
                 
                 
                 if cell.gestureRecognizers?.count == nil {
@@ -201,8 +219,16 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
                 cell.label.layer.masksToBounds = true
                 cell.label.layer.cornerRadius = 8.0
                 //cell.image.image = images.sample()
-                cell.image.layer.cornerRadius = 8.0
-                cell.image.clipsToBounds = true
+                cell.number.text = number
+                cell.number.layer.masksToBounds = true
+                cell.number.layer.cornerRadius = 8.0
+                cell.number.font = cell.number.font.fontWithSize(20)
+                if(indexPath.row == 0) {
+                    cell.number.frame = CGRectMake(8 * 1.1, 512 * 1.1, 402 * 1.1, 21 * 1.1)
+                } else {
+                    cell.number.frame = CGRectMake(8 , 512 , 402 , 21 )
+                }
+                
                 
                 
                 if cell.gestureRecognizers?.count == nil {
@@ -223,10 +249,15 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func tapped(gesture: UITapGestureRecognizer) {
         if let cell = gesture.view as? SeasonsCollectionViewCell {
-            episode = true
-            season = cell.seasonLabel.text!
-            loadEpisodes()
-            self.collectionView.reloadData()
+            if let resultController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ShowInhalt") as? InhaltViewController {
+                resultController.serie = serie
+                resultController.episode = true
+                resultController.season = cell.seasonLabel.text!
+
+                self.presentViewController(resultController, animated: true, completion: nil)
+                
+                
+            }
             
         } else if let cell = gesture.view as? EpisodesCollectionViewCell {
             
@@ -273,78 +304,6 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
-    func downloadBackground() {
-        do
-        {
-            
-            let url = NSURL(string: "http://webservice.fanart.tv/v3/tv/'+" + tvdbid +  "+'?api_key=9b5df109b2777f70b4956241d74778af")
-            let contents = try NSString(contentsOfURL: url!, usedEncoding: nil)
-            
-            //print(contents)
-            let array = contents.componentsSeparatedByString("\n")
-            var image = String()
-            for s : String in array {
-                
-                if(s.containsString("showbackground") && s.containsString("url")) {
-                    
-                    
-                    image = s.componentsSeparatedByString("\"")[3]
-                    break
-                    
-                }
-                
-            }
-            let imageURL = NSURL(string: image)
-            if let fetchedImage = NSData(contentsOfURL: imageURL!) {
-                
-                let endimage = UIImage(data: fetchedImage)!
-                
-                let color = UIColor(patternImage: endimage)
-                
-                self.view.backgroundColor = color
-            }
-            
-        } catch { print("Error loading Image") }
-        
-    }
-    
-    func backupImage() {
-        do {
-            let url = NSURL(string: "https://bs.to/serie/" + serie)
-            let contents = try NSString(contentsOfURL: url!, usedEncoding: nil)
-            
-            //print(contents)
-            let array = contents.componentsSeparatedByString("\n")
-            var image = String()
-            
-            for s : String in array {
-                
-                if(s.containsString("Cover")) {
-                    
-                    image = (s.componentsSeparatedByString("//")[1].componentsSeparatedByString("\"")[0])
-                    
-                }
-                
-                
-                
-            }
-            
-            let imageURL = NSURL(string: "http://" + image)
-            let fetchedImage = try! NSData(contentsOfURL: imageURL!)
-            let path = NSTemporaryDirectory() + "image_" + NSUUID().UUIDString
-            fetchedImage!.writeToFile(path, atomically: false)
-            let endimg = UIImage(contentsOfFile: path)
-            
-            self.images.append(endimg!)
-            
-            tvdbid = "no"
-            
-        } catch {
-            print("Error loading Image"
-            )
-        }
-        
-    }
     
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         if let previousItem = context.previouslyFocusedView as? SeasonsCollectionViewCell {
@@ -360,13 +319,13 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         if let previousItem = context.previouslyFocusedView as? EpisodesCollectionViewCell {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
-                previousItem.image.frame.size = self.originalFotoSize
+                previousItem.number.frame.size = self.originalFotoSize
                 previousItem.label.frame = CGRectMake(8, 512, 402, 21)
             })
         }
         if let nextItem = context.nextFocusedView as? EpisodesCollectionViewCell {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
-                nextItem.image.frame.size = self.focusFotoSize
+                nextItem.number.frame.size = self.focusFotoSize
                 nextItem.label.frame = CGRectMake(8 * 1.1, 512 * 1.1, 402 * 1.1, 21 * 1.1)
             })
         }
@@ -479,6 +438,25 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
 
+    func getDocumentsURL() -> NSURL {
+        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+        return documentsURL
+    }
+    
+    func fileInDocumentsDirectory(filename: String) -> String {
+        
+        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+        return fileURL.path!
+        
+    }
+    
+    func loadImageFromPath(path: String) -> UIImage? {
+        
+        let image = UIImage(contentsOfFile: path)
+        
+        return image
+        
+    }
    
 
 

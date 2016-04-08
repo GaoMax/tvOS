@@ -10,55 +10,22 @@ import UIKit
 
 class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
 
-    var series = [NSString]()
-    var filteredSeries = [NSString]()
+    var series = [String]()
+    var filteredSeries = [String]()
     static let storyboardIdentifier = "SearchResultsViewController"
+    
+    
+    
     
     let originalCellSize = CGSizeMake(300, 370)
     let focusCellSize = CGSizeMake(320, 400)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadSeries()
+        series = AppDelegate.series
+        
     }
     
-    func loadSeries() {
-        do {
-            let url = NSURL(string: "https://bs.to/serie/")
-            let contents = try NSString(contentsOfURL: url!, usedEncoding: nil)
-            
-            //print(contents)
-            var array = contents.componentsSeparatedByString("\n")
-            
-            for var s : String in array {
-                
-                if(!s.containsString("<li><a href=\"serie/")) {
-                    array.removeAtIndex(array.indexOf(s)!)
-                    
-                } else {
-                    s = s.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet());
-                    let index1 = s.endIndex.advancedBy(-9)
-                    let part1 = s.substringToIndex(index1)
-                    let index2 = part1.startIndex.advancedBy(19)
-                    let part2 = part1.substringFromIndex(index2)
-                    
-                    let final = part2.componentsSeparatedByString("\"")[0]
-                    
-                    if(!self.series.contains(final)) {
-                        self.series.append(final)
-                        print(final)
-                    }
-                    
-                    
-                }
-            }
-            
-        } catch {
-        }
-        
-        
-        
-    }
 
     
     var filterString = "" {
@@ -71,8 +38,8 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
                 filteredSeries = [String]()
             }
             else {
+                filteredSeries.removeAll()
                 filteredSeries = series.filter { $0.componentsSeparatedByString("-").joinWithSeparator(" ").localizedStandardContainsString(filterString) }
-
             }
             
             // Reload the collection view to reflect the changes.
@@ -93,23 +60,23 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
             
             let serie = filteredSeries[indexPath.row]
             
-            cell.serie = serie as String
+            var ncell = cell
             
-            
-        
-            cell.image.layer.cornerRadius = 8.0
-            cell.image.clipsToBounds = true
-            cell.initLabel()
-            
-            if cell.gestureRecognizers?.count == nil {
+            ncell.serie = serie as String
+            ncell.image.layer.cornerRadius = 8.0
+            ncell.image.clipsToBounds = true
+            ncell.initLabel()
+
+
+            if ncell.gestureRecognizers?.count == nil {
                 let tap = UITapGestureRecognizer(target: self, action: "tapped:")
                 tap.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)]
-                cell.addGestureRecognizer(tap)
+                ncell.addGestureRecognizer(tap)
             }
             
             
             
-            return cell
+            return ncell
         }
         else {
             return SeriesCollectionViewCell()
@@ -125,7 +92,7 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
         let item = filteredSeries[indexPath.row]
         
         // Configure the cell.
-        print(item)
+        
     }
     
     // MARK: UISearchResultsUpdating

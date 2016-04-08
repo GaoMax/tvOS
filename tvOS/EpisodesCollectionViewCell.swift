@@ -11,7 +11,8 @@ import UIKit
 class EpisodesCollectionViewCell: UICollectionViewCell {
     
     
-    @IBOutlet weak var image: UIImageView!
+    
+    @IBOutlet weak var number: UILabel!
     @IBOutlet weak var label: UILabel!
     
     var episode = ""
