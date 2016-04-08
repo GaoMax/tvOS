@@ -185,10 +185,10 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
                 cell.seasonLabel.layer.cornerRadius = 8.0
                 cell.seasonLabel.font = cell.seasonLabel.font.fontWithSize(20)
                 
-                if(indexPath.row != 0) {
-                    UIView.animateWithDuration(0.4, animations: { () -> Void in
-                        cell.seasonLabel.frame = self.originalCellSize
-                    })
+                if(indexPath.row == 0) {
+                    cell.seasonLabel.frame.size = self.focusFotoSize
+                } else {
+                    cell.seasonLabel.frame.size = self.originalFotoSize
                 }
                 
                 
@@ -308,12 +308,12 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         if let previousItem = context.previouslyFocusedView as? SeasonsCollectionViewCell {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
-                previousItem.seasonLabel.frame = self.originalCellSize
+                previousItem.seasonLabel.frame.size = self.originalFotoSize
             })
         }
         if let nextItem = context.nextFocusedView as? SeasonsCollectionViewCell {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
-                nextItem.seasonLabel.frame = self.focusCellSize
+                nextItem.seasonLabel.frame.size = self.focusFotoSize
                 
             })
         }
