@@ -225,8 +225,6 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
                 cell.number.font = cell.number.font.fontWithSize(20)
                 if(indexPath.row == 0) {
                     cell.number.frame = CGRectMake(8 * 1.1, 512 * 1.1, 402 * 1.1, 21 * 1.1)
-                } else {
-                    cell.number.frame = CGRectMake(8 , 512 , 402 , 21 )
                 }
                 
                 

@@ -300,7 +300,7 @@ class SecondViewController: UIViewController {
                 // Image speichern
             }
             
-        } catch { print("Error loading Image") }
+        } catch { print("Error loading Background") }
         
     }
     
