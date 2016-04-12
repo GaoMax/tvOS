@@ -230,7 +230,7 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
                 let number  = text[0]
                 text.removeAtIndex(0)
                 
-                let finaltext = number + ": " + text.joinWithSeparator(" ")
+                let finaltext = text.joinWithSeparator(" ")
                 cell.label.text = finaltext
                 cell.label.layer.masksToBounds = true
                 cell.label.layer.cornerRadius = 8.0
