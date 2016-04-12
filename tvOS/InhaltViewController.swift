@@ -65,8 +65,9 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
     func loadImage(name : String) -> UIImage? {
         if let url = NSURL(string: AppDelegate.ip + "/images/" + name) {
             if let data = NSData(contentsOfURL: url) {
-                let endimg = UIImage(data: data)
-                return endimg!
+                if let endimg = UIImage(data: data) {
+                    return endimg
+                }
             }
             
         }
@@ -335,13 +336,13 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         if let previousItem = context.previouslyFocusedView as? EpisodesCollectionViewCell {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 previousItem.number.frame.size = self.originalFotoSize
-                previousItem.label.frame = CGRectMake(8, 512, 402, 21)
+                previousItem.label.frame = CGRectMake(8, 512, 402, 52)
             })
         }
         if let nextItem = context.nextFocusedView as? EpisodesCollectionViewCell {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 nextItem.number.frame.size = self.focusFotoSize
-                nextItem.label.frame = CGRectMake(8 * 1.1, 512 * 1.1, 402 * 1.1, 21 * 1.1)
+                nextItem.label.frame = CGRectMake(8 * 1.1, 512 * 1.1, 402 * 1.1, 52 * 1.1)
             })
         }
         
