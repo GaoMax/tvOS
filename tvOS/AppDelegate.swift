@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static var series = [String]()
     
-    static let ip = "http://192.168.178.35"
+    static let ip = "http://maxgao.de"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         loadSeries()
