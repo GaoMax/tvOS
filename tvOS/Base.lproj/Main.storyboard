@@ -84,7 +84,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="2729E344-1CA4-47CF-9414-65671A388C97" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Second" image="1A65D9B4-DC0D-4AC3-8F03-4898C8674262" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="button" destination="HPI-aj-2fF" id="M9k-Sz-wrd"/>
                         <outlet property="label" destination="EOQ-0G-T4b" id="lBp-5V-NPy"/>
@@ -198,7 +198,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="2729E344-1CA4-47CF-9414-65671A388C97" width="30" height="30">
+        <image name="1A65D9B4-DC0D-4AC3-8F03-4898C8674262" width="30" height="30">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGQkNYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QDwcI
 ERYbHCUmJygwMzY8P1UkbnVsbNQJCgsMDQ4PEFYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVwc1dOU0Nv

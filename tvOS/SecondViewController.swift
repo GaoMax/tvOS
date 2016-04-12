@@ -15,20 +15,18 @@ class SecondViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let imagePath = fileInDocumentsDirectory("zurueck-in-die-zukunft.png")
+        let imagePath = "zurueck-in-die-zukunft.png"
         
-        if (loadImageFromPath(imagePath) == nil) {
+        if (loadImage(imagePath) == nil) {
             
             button.alpha = 0
 
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 for serie: String in AppDelegate.series {
                     
-
-                    let manager = NSFileManager.defaultManager()
-                    let imagePath = self.fileInDocumentsDirectory(serie + ".png")
+                    let imagePath = serie + ".png"
                     
-                    if(manager.fileExistsAtPath(imagePath)) {
+                    if(self.loadImage(imagePath) != nil) {
                         continue
                     }
                     
@@ -40,11 +38,10 @@ class SecondViewController: UIViewController {
                     }
                     
                     self.downloadImage(serie, tvdbid: tvdbid)
-                
                     
-                    let backgroundPath = self.fileInDocumentsDirectory(serie + "_background" + ".png")
+                    let backgroundPath = serie + "_background" + ".png"
                     
-                    if(manager.fileExistsAtPath(backgroundPath)) {
+                    if(self.loadImage(backgroundPath) != nil) {
                         continue
                     }
                     
@@ -83,7 +80,7 @@ class SecondViewController: UIViewController {
     }
 
     public func deleteContentsOfFolder() {
-        if let enumerator = NSFileManager.defaultManager().enumeratorAtPath(getDocumentsURL().path!) {
+        if let enumerator = NSFileManager.defaultManager().enumeratorAtPath(NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]) {
             while let item = enumerator.nextObject()
             {
                 // itemURL
@@ -111,36 +108,27 @@ class SecondViewController: UIViewController {
         let pngImageData = UIImagePNGRepresentation(image)
         //let jpgImageData = UIImageJPEGRepresentation(image, 1.0)   // if you want to save as JPEG
         let result = pngImageData!.writeToFile(path, atomically: true)
-        
+        uploadImage(image, serie: path)
         return result
         
     }
     
-    func getDocumentsURL() -> NSURL {
-        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        return documentsURL
-    }
     
     func fileInDocumentsDirectory(filename: String) -> String {
-        
-        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-        return fileURL.path!
+        return filename
         
     }
     
-    func loadImageFromPath(path: String) -> UIImage? {
-        
-        let image = UIImage(contentsOfFile: path)
-        
-        return image
-        
-    }
     
     func fetchID(var serie : String) -> String {
         do
         {
             if(serie.containsString("Marvel-s-")) {
                 serie = serie.componentsSeparatedByString("Marvel-s-")[1]
+            }
+            
+            if(serie.containsString("DC's")) {
+                serie = serie.componentsSeparatedByString("DC's")[1]
             }
             
             let url = NSURL(string: "http://thetvdb.com/api/GetSeries.php?seriesname='" + serie.componentsSeparatedByString("-").joinWithSeparator("%20") + "'&language=de")
@@ -164,6 +152,19 @@ class SecondViewController: UIViewController {
         } catch {
             return "error"
         }
+    }
+    
+    func loadImage(name : String) -> UIImage? {
+        if let url = NSURL(string: AppDelegate.ip + "/images/" + name) {
+            if let data = NSData(contentsOfURL: url) {
+                if let endimg = UIImage(data: data) {
+                    return endimg 
+                }
+                
+            }
+            
+        }
+        return nil
     }
     
     func downloadImage(serie : String, tvdbid : String) {
@@ -304,6 +305,100 @@ class SecondViewController: UIViewController {
         
     }
     
+    func uploadImage(image : UIImage, serie : String)
+    {
+        
+        let myUrl = NSURL(string: AppDelegate.ip + "/test.php");
+        
+        let request = NSMutableURLRequest(URL:myUrl!);
+        request.HTTPMethod = "POST";
+        
+        let param = [
+            "firstName"  : "Max",
+            "lastName"    : "Gao",
+            "userId"    : "1"
+        ]
+        
+        let boundary = generateBoundaryString()
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        
+        let imageData = UIImageJPEGRepresentation(image, 1)
+        
+        if(imageData==nil)  { return; }
+        
+        request.HTTPBody = createBodyWithParameters(param, filePathKey: "file", imageDataKey: imageData!, boundary: boundary, name: serie)
+        
+        
+        
+
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
+            
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            
+            /*
+             if let parseJSON = json {
+             var firstNameValue = parseJSON["firstName"] as? String
+             println("firstNameValue: \(firstNameValue)")
+             }
+             */
+            
+        }
+        
+        task.resume()
+        
+    }
+    
+    func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String, name : String) -> NSData {
+        var body = NSMutableData();
+        
+        if parameters != nil {
+            for (key, value) in parameters! {
+                body.appendString("--\(boundary)\r\n")
+                body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+                body.appendString("\(value)\r\n")
+            }
+        }
+        
+        let filename = name
+        
+        let mimetype = "image/jpg"
+        
+        body.appendString("--\(boundary)\r\n")
+        body.appendString("Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n")
+        body.appendString("Content-Type: \(mimetype)\r\n\r\n")
+        body.appendData(imageDataKey)
+        body.appendString("\r\n")
+        
+        
+        
+        body.appendString("--\(boundary)--\r\n")
+        
+        return body
+    }
+    
+    
+    
+    
+    func generateBoundaryString() -> String {
+        return "Boundary-\(NSUUID().UUIDString)"
+    }
+    
+    
     
 }
 
+extension NSMutableData {
+    
+    func appendString(string: String) {
+        let data = string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        appendData(data!)
+    }
+}

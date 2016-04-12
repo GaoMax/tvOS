@@ -26,6 +26,8 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
     let focusFotoSize = CGSizeMake(279 * 1.1, 398 * 1.1)
     var originallabel = CGRectMake(0,0,0,0)
     
+    var backgroundImage:UIImage? = nil
+    
     var episode = false
     var episodes = [String]()
     
@@ -42,20 +44,33 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         } else {
             loadEpisodes()
         }
-    
-        setBackground()
+        if(backgroundImage == nil) {
+            setBackground()
+        }
+        
 
 
 
     }
     
     func setBackground() {
-        let imagePath = self.fileInDocumentsDirectory(serie + "_background" + ".png")
+        let imagePath = serie + "_background" + ".png"
         
-        if let image = loadImageFromPath(imagePath) {
+        if let image = loadImage(imagePath) {
             let color = UIColor(patternImage: image)
             self.view.backgroundColor = color
         }
+    }
+    
+    func loadImage(name : String) -> UIImage? {
+        if let url = NSURL(string: AppDelegate.ip + "/images/" + name) {
+            if let data = NSData(contentsOfURL: url) {
+                let endimg = UIImage(data: data)
+                return endimg!
+            }
+            
+        }
+        return nil
     }
     
     
@@ -223,10 +238,11 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
                 cell.number.layer.masksToBounds = true
                 cell.number.layer.cornerRadius = 8.0
                 cell.number.font = cell.number.font.fontWithSize(20)
-                if(indexPath.row == 0) {
-                    cell.number.frame = CGRectMake(8 * 1.1, 512 * 1.1, 402 * 1.1, 21 * 1.1)
+                if(episode == "1") {
+                    cell.number.frame.size = self.focusFotoSize
+                } else {
+                    cell.number.frame.size = self.originalFotoSize
                 }
-                
                 
                 
                 if cell.gestureRecognizers?.count == nil {
@@ -251,6 +267,7 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
                 resultController.serie = serie
                 resultController.episode = true
                 resultController.season = cell.seasonLabel.text!
+                resultController.backgroundImage = backgroundImage
 
                 self.presentViewController(resultController, animated: true, completion: nil)
                 
@@ -416,7 +433,6 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
     
         private func playVideo(s: String) throws {
         
-        SwiftSpinner.hide()
         
         
         let player = AVPlayer(URL: NSURL(string: s)!)
@@ -424,7 +440,7 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         let playerController = AVPlayerViewController()
         playerController.player = player
         self.presentViewController(playerController, animated: true) {
-            
+            SwiftSpinner.hide()
             player.play()
             
             
@@ -436,15 +452,10 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         
     }
 
-    func getDocumentsURL() -> NSURL {
-        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        return documentsURL
-    }
-    
     func fileInDocumentsDirectory(filename: String) -> String {
-        
-        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-        return fileURL.path!
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+        let path:NSString = documentsPath.stringByAppendingPathComponent(filename);
+        return path as String
         
     }
     

@@ -17,60 +17,15 @@ class SeriesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
     
     var serie = ""
-    var tvdbid = ""
-    var imageurl = ""
-    var images = [UIImage]()
+    var urlString = ""
     
     func initLabel() {
         
         label.text = serie.componentsSeparatedByString("-").joinWithSeparator(" ")
         
-        
-        let imagePath = fileInDocumentsDirectory(serie + ".png")
+    }
 
-        if let loadedImage = loadImageFromPath(imagePath) {
-            image.image = loadedImage
-        } else {
-            image.image = UIImage()
-        }
-        
-        
-    }
-       }
-
-    
-    func loadImageFromPath(path: String) -> UIImage? {
-        
-        let image = UIImage(contentsOfFile: path)
-        
-        return image
-        
-    }
-    
-    func saveImage (image: UIImage, path: String ) -> Bool{
-        
-        let pngImageData = UIImagePNGRepresentation(image)
-        //let jpgImageData = UIImageJPEGRepresentation(image, 1.0)   // if you want to save as JPEG
-        let result = pngImageData!.writeToFile(path, atomically: true)
-        
-        return result
-        
-    }
-    
-    func getDocumentsURL() -> NSURL {
-        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
-        return documentsURL
-    }
-    
-    func fileInDocumentsDirectory(filename: String) -> String {
-        
-        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-        return fileURL.path!
-        
-    }
-    
-
-    
+}
 
 
 public extension UIImage {

@@ -17,8 +17,8 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
     
     
     
-    let originalCellSize = CGSizeMake(300, 370)
-    let focusCellSize = CGSizeMake(320, 400)
+    let originalCellSize = CGSizeMake(240, 292)
+    let focusCellSize = CGSizeMake(260, 310)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +39,7 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
             }
             else {
                 filteredSeries.removeAll()
+                ThreadManager.killAllThreads()
                 filteredSeries = series.filter { $0.componentsSeparatedByString("-").joinWithSeparator(" ").localizedStandardContainsString(filterString) }
             }
             
@@ -60,25 +61,41 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
             
             let serie = filteredSeries[indexPath.row]
             
-            var ncell = cell
+            cell.serie = serie as String
+            cell.image.layer.cornerRadius = 8.0
+            cell.image.clipsToBounds = true
+            cell.initLabel()
+            cell.layer.shouldRasterize = true
+            cell.layer.rasterizationScale = UIScreen.mainScreen().scale
             
-            ncell.serie = serie as String
-            ncell.image.layer.cornerRadius = 8.0
-            ncell.image.clipsToBounds = true
-            ncell.initLabel()
+            cell.image.image = UIImage()
+            let urlString = AppDelegate.ip + "/images/" + serie + ".png"
+            cell.urlString = urlString
+            
+            if(ThreadManager.cache[cell.urlString] == nil) {
+            
+            if let url = NSURL(string: urlString) {
+                    UIImage.asyncDownloadImageWithUrl(url, completionBlock: { (succeded, dimage) -> Void in
+                        if succeded {
+                            if cell.urlString == url.absoluteString {
+                                ThreadManager.cache[cell.urlString] = dimage
+                                cell.image.image = dimage
+                            }
+                        }
+                    })
+                }
+            } else {
+                cell.image.image = ThreadManager.cache[cell.urlString]
+            }
 
-
-            if ncell.gestureRecognizers?.count == nil {
+            if cell.gestureRecognizers?.count == nil {
                 let tap = UITapGestureRecognizer(target: self, action: "tapped:")
                 tap.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)]
-                ncell.addGestureRecognizer(tap)
+                cell.addGestureRecognizer(tap)
             }
             
-            
-            
-            return ncell
-        }
-        else {
+            return cell
+        } else {
             return SeriesCollectionViewCell()
         }
 
@@ -106,8 +123,6 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
         if let cell = gesture.view as? SeriesCollectionViewCell {
             if let resultController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ShowInhalt") as? InhaltViewController {
                 resultController.serie = cell.serie
-                resultController.tvdbid = cell.tvdbid
-                resultController.images = cell.images
                 self.presentViewController(resultController, animated: true, completion: nil)
                 
                 
@@ -120,14 +135,12 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
         if let previousItem = context.previouslyFocusedView as? SeriesCollectionViewCell {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 previousItem.image.frame.size = self.originalCellSize
-                previousItem.label.frame = CGRectMake(70, 384, 180, 40)
                 
             })
         }
         if let nextItem = context.nextFocusedView as? SeriesCollectionViewCell {
             UIView.animateWithDuration(0.4, animations: { () -> Void in
                 nextItem.image.frame.size = self.focusCellSize
-                nextItem.label.frame = CGRectMake(70 * 1.1, 384 * 1.1, 180 * 1.1, 21 * 1.1)
                 
             })
         }
@@ -138,6 +151,21 @@ class FirstViewController: UICollectionViewController, UISearchResultsUpdating {
 
 
 
+}
 
+extension UIImage {
+    static func asyncDownloadImageWithUrl(url: NSURL, completionBlock: (succeeded: Bool, image: UIImage?) -> Void) {
+        let request = NSMutableURLRequest(URL: url)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) in
+            if error == nil {
+                if let image = UIImage(data: data!) {
+                    completionBlock(succeeded: true, image: image)
+                }
+            } else {
+                completionBlock(succeeded: false, image: nil)
+            }
+            
+        })
+    }
 }
 
