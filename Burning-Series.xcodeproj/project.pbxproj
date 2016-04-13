@@ -43,16 +43,16 @@
 /* Begin PBXFileReference section */
 		4F59F8251CB6B51D00DA8008 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		4F59F89F1CB993EF00DA8008 /* ThreadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadManager.swift; sourceTree = "<group>"; };
-		4F6C11951CB421670096F090 /* tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6C11951CB421670096F090 /* Burning-Series.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Burning-Series.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6C11981CB421670096F090 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F6C119A1CB421670096F090 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		4F6C119F1CB421670096F090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F6C11A11CB421670096F090 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F6C11A31CB421670096F090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F6C11A81CB421670096F090 /* tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6C11A81CB421670096F090 /* Burning-Series.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Burning-Series.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6C11AC1CB421670096F090 /* tvOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSTests.swift; sourceTree = "<group>"; };
 		4F6C11AE1CB421670096F090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F6C11B31CB421670096F090 /* tvOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tvOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6C11B31CB421670096F090 /* Burning-Series.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Burning-Series.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6C11B71CB421670096F090 /* tvOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tvOSUITests.swift; sourceTree = "<group>"; };
 		4F6C11B91CB421670096F090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F6C11C71CB427A70096F090 /* SeriesCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 		4F6C118C1CB421670096F090 = {
 			isa = PBXGroup;
 			children = (
-				4F6C11971CB421670096F090 /* tvOS */,
+				4F6C11971CB421670096F090 /* Burning-Series */,
 				4F6C11AB1CB421670096F090 /* tvOSTests */,
 				4F6C11B61CB421670096F090 /* tvOSUITests */,
 				4F6C11961CB421670096F090 /* Products */,
@@ -101,14 +101,14 @@
 		4F6C11961CB421670096F090 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4F6C11951CB421670096F090 /* tvOS.app */,
-				4F6C11A81CB421670096F090 /* tvOSTests.xctest */,
-				4F6C11B31CB421670096F090 /* tvOSUITests.xctest */,
+				4F6C11951CB421670096F090 /* Burning-Series.app */,
+				4F6C11A81CB421670096F090 /* Burning-Series.xctest */,
+				4F6C11B31CB421670096F090 /* Burning-Series.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4F6C11971CB421670096F090 /* tvOS */ = {
+		4F6C11971CB421670096F090 /* Burning-Series */ = {
 			isa = PBXGroup;
 			children = (
 				4F6C11981CB421670096F090 /* AppDelegate.swift */,
@@ -125,6 +125,7 @@
 				4FDD2F5B1CB53A03007EA085 /* CellController.swift */,
 				4F59F89F1CB993EF00DA8008 /* ThreadManager.swift */,
 			);
+			name = "Burning-Series";
 			path = tvOS;
 			sourceTree = "<group>";
 		};
@@ -149,9 +150,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4F6C11941CB421670096F090 /* tvOS */ = {
+		4F6C11941CB421670096F090 /* Burning-Series */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F6C11BC1CB421670096F090 /* Build configuration list for PBXNativeTarget "tvOS" */;
+			buildConfigurationList = 4F6C11BC1CB421670096F090 /* Build configuration list for PBXNativeTarget "Burning-Series" */;
 			buildPhases = (
 				4F6C11911CB421670096F090 /* Sources */,
 				4F6C11921CB421670096F090 /* Frameworks */,
@@ -161,14 +162,14 @@
 			);
 			dependencies = (
 			);
-			name = tvOS;
+			name = "Burning-Series";
 			productName = tvOS;
-			productReference = 4F6C11951CB421670096F090 /* tvOS.app */;
+			productReference = 4F6C11951CB421670096F090 /* Burning-Series.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4F6C11A71CB421670096F090 /* tvOSTests */ = {
+		4F6C11A71CB421670096F090 /* Burning-SeriesTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F6C11BF1CB421670096F090 /* Build configuration list for PBXNativeTarget "tvOSTests" */;
+			buildConfigurationList = 4F6C11BF1CB421670096F090 /* Build configuration list for PBXNativeTarget "Burning-SeriesTests" */;
 			buildPhases = (
 				4F6C11A41CB421670096F090 /* Sources */,
 				4F6C11A51CB421670096F090 /* Frameworks */,
@@ -179,14 +180,14 @@
 			dependencies = (
 				4F6C11AA1CB421670096F090 /* PBXTargetDependency */,
 			);
-			name = tvOSTests;
+			name = "Burning-SeriesTests";
 			productName = tvOSTests;
-			productReference = 4F6C11A81CB421670096F090 /* tvOSTests.xctest */;
+			productReference = 4F6C11A81CB421670096F090 /* Burning-Series.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4F6C11B21CB421670096F090 /* tvOSUITests */ = {
+		4F6C11B21CB421670096F090 /* Burning-SeriesUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F6C11C21CB421670096F090 /* Build configuration list for PBXNativeTarget "tvOSUITests" */;
+			buildConfigurationList = 4F6C11C21CB421670096F090 /* Build configuration list for PBXNativeTarget "Burning-SeriesUITests" */;
 			buildPhases = (
 				4F6C11AF1CB421670096F090 /* Sources */,
 				4F6C11B01CB421670096F090 /* Frameworks */,
@@ -197,9 +198,9 @@
 			dependencies = (
 				4F6C11B51CB421670096F090 /* PBXTargetDependency */,
 			);
-			name = tvOSUITests;
+			name = "Burning-SeriesUITests";
 			productName = tvOSUITests;
-			productReference = 4F6C11B31CB421670096F090 /* tvOSUITests.xctest */;
+			productReference = 4F6C11B31CB421670096F090 /* Burning-Series.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -226,7 +227,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4F6C11901CB421670096F090 /* Build configuration list for PBXProject "tvOS" */;
+			buildConfigurationList = 4F6C11901CB421670096F090 /* Build configuration list for PBXProject "Burning-Series" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -239,9 +240,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4F6C11941CB421670096F090 /* tvOS */,
-				4F6C11A71CB421670096F090 /* tvOSTests */,
-				4F6C11B21CB421670096F090 /* tvOSUITests */,
+				4F6C11941CB421670096F090 /* Burning-Series */,
+				4F6C11A71CB421670096F090 /* Burning-SeriesTests */,
+				4F6C11B21CB421670096F090 /* Burning-SeriesUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -311,12 +312,12 @@
 /* Begin PBXTargetDependency section */
 		4F6C11AA1CB421670096F090 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F6C11941CB421670096F090 /* tvOS */;
+			target = 4F6C11941CB421670096F090 /* Burning-Series */;
 			targetProxy = 4F6C11A91CB421670096F090 /* PBXContainerItemProxy */;
 		};
 		4F6C11B51CB421670096F090 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4F6C11941CB421670096F090 /* tvOS */;
+			target = 4F6C11941CB421670096F090 /* Burning-Series */;
 			targetProxy = 4F6C11B41CB421670096F090 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -426,7 +427,7 @@
 				INFOPLIST_FILE = tvOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.maxgao.tvOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Burning-Series";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -441,7 +442,7 @@
 				INFOPLIST_FILE = tvOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.maxgao.tvOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Burning-Series";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -453,8 +454,8 @@
 				INFOPLIST_FILE = tvOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.maxgao.tvOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tvOS.app/tvOS";
+				PRODUCT_NAME = "Burning-Series";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Burning-Series.app/Burning-Series";
 			};
 			name = Debug;
 		};
@@ -465,8 +466,8 @@
 				INFOPLIST_FILE = tvOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.maxgao.tvOSTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tvOS.app/tvOS";
+				PRODUCT_NAME = "Burning-Series";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Burning-Series.app/Burning-Series";
 			};
 			name = Release;
 		};
@@ -476,7 +477,7 @@
 				INFOPLIST_FILE = tvOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.maxgao.tvOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Burning-Series";
 				TEST_TARGET_NAME = tvOS;
 			};
 			name = Debug;
@@ -487,7 +488,7 @@
 				INFOPLIST_FILE = tvOSUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.maxgao.tvOSUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Burning-Series";
 				TEST_TARGET_NAME = tvOS;
 			};
 			name = Release;
@@ -495,7 +496,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4F6C11901CB421670096F090 /* Build configuration list for PBXProject "tvOS" */ = {
+		4F6C11901CB421670096F090 /* Build configuration list for PBXProject "Burning-Series" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F6C11BA1CB421670096F090 /* Debug */,
@@ -504,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F6C11BC1CB421670096F090 /* Build configuration list for PBXNativeTarget "tvOS" */ = {
+		4F6C11BC1CB421670096F090 /* Build configuration list for PBXNativeTarget "Burning-Series" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F6C11BD1CB421670096F090 /* Debug */,
@@ -513,7 +514,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F6C11BF1CB421670096F090 /* Build configuration list for PBXNativeTarget "tvOSTests" */ = {
+		4F6C11BF1CB421670096F090 /* Build configuration list for PBXNativeTarget "Burning-SeriesTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F6C11C01CB421670096F090 /* Debug */,
@@ -522,7 +523,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F6C11C21CB421670096F090 /* Build configuration list for PBXNativeTarget "tvOSUITests" */ = {
+		4F6C11C21CB421670096F090 /* Build configuration list for PBXNativeTarget "Burning-SeriesUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F6C11C31CB421670096F090 /* Debug */,

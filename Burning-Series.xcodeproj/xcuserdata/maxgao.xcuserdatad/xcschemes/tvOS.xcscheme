@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F6C11941CB421670096F090"
-               BuildableName = "tvOS.app"
-               BlueprintName = "tvOS"
-               ReferencedContainer = "container:tvOS.xcodeproj">
+               BuildableName = "Burning-Series.app"
+               BlueprintName = "Burning-Series"
+               ReferencedContainer = "container:Burning-Series.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F6C11A71CB421670096F090"
-               BuildableName = "tvOSTests.xctest"
-               BlueprintName = "tvOSTests"
-               ReferencedContainer = "container:tvOS.xcodeproj">
+               BuildableName = "Burning-Series.xctest"
+               BlueprintName = "Burning-SeriesTests"
+               ReferencedContainer = "container:Burning-Series.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4F6C11B21CB421670096F090"
-               BuildableName = "tvOSUITests.xctest"
-               BlueprintName = "tvOSUITests"
-               ReferencedContainer = "container:tvOS.xcodeproj">
+               BuildableName = "Burning-Series.xctest"
+               BlueprintName = "Burning-SeriesUITests"
+               ReferencedContainer = "container:Burning-Series.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F6C11941CB421670096F090"
-            BuildableName = "tvOS.app"
-            BlueprintName = "tvOS"
-            ReferencedContainer = "container:tvOS.xcodeproj">
+            BuildableName = "Burning-Series.app"
+            BlueprintName = "Burning-Series"
+            ReferencedContainer = "container:Burning-Series.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F6C11941CB421670096F090"
-            BuildableName = "tvOS.app"
-            BlueprintName = "tvOS"
-            ReferencedContainer = "container:tvOS.xcodeproj">
+            BuildableName = "Burning-Series.app"
+            BlueprintName = "Burning-Series"
+            ReferencedContainer = "container:Burning-Series.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4F6C11941CB421670096F090"
-            BuildableName = "tvOS.app"
-            BlueprintName = "tvOS"
-            ReferencedContainer = "container:tvOS.xcodeproj">
+            BuildableName = "Burning-Series.app"
+            BlueprintName = "Burning-Series"
+            ReferencedContainer = "container:Burning-Series.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
