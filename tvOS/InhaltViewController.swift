@@ -63,15 +63,21 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func loadImage(name : String) -> UIImage? {
+        if (CellController.getCell(serie) == nil){
+            return CellController.getCell(serie)
+            
+        } else {
         if let url = NSURL(string: AppDelegate.ip + "/images/" + name) {
             if let data = NSData(contentsOfURL: url) {
                 if let endimg = UIImage(data: data) {
+                    CellController.cache(serie, image: endimg)
                     return endimg
                 }
             }
             
         }
-        return nil
+            return nil
+        }
     }
     
     
@@ -177,8 +183,6 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
         seasons = seasons.filter() { !$0.isEmpty }
-        
-        
         
         
     }
@@ -413,7 +417,6 @@ class InhaltViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func matchesForRegexInText(regex: String!, text: String!) -> String {
-        
         do {
             let regex = try NSRegularExpression(pattern: regex, options: [])
             let nsString = text as NSString

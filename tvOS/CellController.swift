@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 public class CellController {
     
-    static var cached = [String: SeriesCollectionViewCell]()
+    static var cached = [String: UIImage]()
     
     static func isCached(serie : String) -> Bool {
         for s in (cached as NSDictionary).allKeys {
@@ -23,21 +24,16 @@ public class CellController {
         
     }
     
-    static func getCell(serie : String, ocell : SeriesCollectionViewCell) -> SeriesCollectionViewCell {
-
-        print(cached[serie]!.serie + "was loaded from cache with the name : " +  serie)
-        
-        for s in (cached as NSDictionary).allKeys {
-            if(s as! String == "The-Flash") {
-                print("GEFUNDEN")
-            }
+    static func getCell(serie : String) -> UIImage? {
+        if(cached.keys.contains(serie)) {
+            return cached[serie]
         }
+        return nil
         
-        return cached[serie]!
     }
     
-    static func cache(serie : String, cell : SeriesCollectionViewCell) {
-        cached[serie] = cell
+    static func cache(serie : String, image : UIImage) {
+        cached[serie] = image
     }
     
     
